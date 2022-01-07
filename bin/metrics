@@ -1,0 +1,21 @@
+#!/usr/bin/env sh
+# This file was created by pub v2.9.0-21.0.dev.
+# Package: dart_code_metrics
+# Version: 1.7.1
+# Executable: metrics
+# Script: metrics
+if [ -f ../metrics.dart-2.9.0-21.0.dev.snapshot ]; then
+  dart "../metrics.dart-2.9.0-21.0.dev.snapshot" "$@"
+  # The VM exits with code 253 if the snapshot version is out-of-date.	
+  # If it is, we need to delete it and run "pub global" manually.	
+  exit_code=$?	
+  if [ $exit_code != 253 ]; then	
+    exit $exit_code	
+  fi	
+  pub global activate dart_code_metrics 1.7.1
+  pub global run dart_code_metrics:metrics "$@"
+else
+  pub global activate dart_code_metrics 1.7.1
+  pub global run dart_code_metrics:metrics "$@"
+fi
+
